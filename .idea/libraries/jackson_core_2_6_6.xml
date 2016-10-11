@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="jackson-core-2.6.6">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/aws-java-sdk-1.11.37/third-party/lib/jackson-core-2.6.6.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/aws-java-sdk-1.11.37/third-party/lib/jackson-databind-2.6.6.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/aws-java-sdk-1.11.37/third-party/lib/jackson-dataformat-cbor-2.6.6.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/aws-java-sdk-1.11.37/third-party/lib/jackson-annotations-2.6.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
