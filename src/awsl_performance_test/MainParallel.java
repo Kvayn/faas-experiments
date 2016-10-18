@@ -1,11 +1,11 @@
 package awsl_performance_test;
 
-import static awsl_perfomance_test_wotransaction.MainParallel1.checkInput;
+import static awsl_perfomance_test_wotransaction.SingleTest.checkInput;
 
 public class MainParallel {
     public static void main(String[] args) throws InterruptedException {
-        int size = 10;
-        int n = 10;
+        int size = 1000;
+        int n = 100;
         if (!checkInput(size, n)){
             System.out.println("Wrong input");
             System.exit(-1);
@@ -18,18 +18,18 @@ public class MainParallel {
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < n; i++){
             InputData inputData = new InputData(M1, M2, size, n, i);
-            ParallelMulInvoker parallelMulInvoker = new ParallelMulInvoker(inputData, outputData);
+            ParallelMulInvoker parallelMulInvoker = new ParallelMulInvoker(inputData, outputData, startTime);
             parallelMulInvoker.start();
             System.out.println("Thread no " + i + " started");
             MainParallel m = new MainParallel();
             //delay put due to limits of AWS Lambda(1000 requests per second with a burst limit of 2000 rps)
             synchronized (m){
-                m.wait(200);
+                m.wait(50);
             }
             if (i == n-1){
-                parallelMulInvoker.join();
                 long endTime = System.currentTimeMillis();
-                System.out.println("The time for starting threads is " + (endTime - startTime));
+                System.out.println("The time of starting threads is " + (endTime - startTime));
+                parallelMulInvoker.join();
                 printMatrix(outputData.getMatrixC());
             }
 

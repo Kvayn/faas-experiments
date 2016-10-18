@@ -25,9 +25,13 @@ class ParallelInvokerThread extends Thread{
     private static AWSCredentials credentials;
     private static AWSLambdaClient lambdaClient;
     private InputData inputData;
+    OutputData receivedData;
+    private long calcStartTime;
+    private long responseTime;
 
-    ParallelInvokerThread(InputData inputData){
+    ParallelInvokerThread(InputData inputData, long calcStartTime){
         this.inputData = inputData;
+        this.calcStartTime = calcStartTime;
     }
 
     @Override
@@ -55,12 +59,13 @@ class ParallelInvokerThread extends Thread{
             invokeRequest.setPayload(json);
             long startTime = System.currentTimeMillis();
             //invoking the function, received data saved in OutputData object
-            OutputData receivedData = objectMapper.readValue(byteBufferToString(
+            receivedData = objectMapper.readValue(byteBufferToString(
                     lambdaClient.invoke(invokeRequest).getPayload(),
                     Charset.forName("UTF-8")), OutputData.class);
+            responseTime = System.currentTimeMillis() - startTime;
             //print the response time of function and the time was taken to calculate
-            System.out.println("The time of response is " + (System.currentTimeMillis() - startTime) +
-                    "| The calculation time is " + receivedData.getComputingTime() + "ms");
+            //System.out.println("The time of response is " + (System.currentTimeMillis() - startTime) +
+            //        " | The calculation time is " + receivedData.getComputingTime() + "ms" + " | The total perform time is " + (System.currentTimeMillis() - calcStartTime));
         } catch (Exception e) {
             logger.error(e.getMessage());
             System.out.println(e.getMessage());
@@ -80,5 +85,13 @@ class ParallelInvokerThread extends Thread{
 
     public InputData getInputData() {
         return inputData;
+    }
+
+    public OutputData getReceivedData() {
+        return receivedData;
+    }
+
+    public long getResponseTime() {
+        return responseTime;
     }
 }

@@ -25,10 +25,13 @@ class ParallelMulInvoker extends Thread{
     private static AWSLambdaClient lambdaClient;
     private InputData inputData;
     private OutputData outputData;
+    private long startTime;
 
-    ParallelMulInvoker(InputData inputData, OutputData outputData){
+
+    ParallelMulInvoker(InputData inputData, OutputData outputData, long startTime){
         this.inputData = inputData;
         this.outputData = outputData;
+        this.startTime = startTime;
     }
 
     @Override
@@ -53,13 +56,14 @@ class ParallelMulInvoker extends Thread{
             invokeRequest.setFunctionName(functionName);
             invokeRequest.setPayload(json);
 
-            long startTime = System.currentTimeMillis();
+            long startReqTime = System.currentTimeMillis();
             //invoke the function
             OutputData receivedData = objectMapper.readValue(byteBufferToString(
                     lambdaClient.invoke(invokeRequest).getPayload(),
                     Charset.forName("UTF-8")), OutputData.class);
             //print the response time of function and the time was taken to calculate
-            System.out.println("The time of response is " + (System.currentTimeMillis() - startTime) + " | " + receivedData.getMessage());
+            System.out.println("The time of response is " + (System.currentTimeMillis() - startReqTime) +
+                    " | " + receivedData.getMessage() + " | The total time is " + (System.currentTimeMillis() - startReqTime));
             //add to result matrix calculated part
             addMatrix(receivedData.getMatrixC());
         } catch (Exception e) {
