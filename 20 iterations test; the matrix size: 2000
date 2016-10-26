@@ -1,0 +1,135 @@
+Test no 0:
+	-Average calculation time of each function: 2928.88 ms;
+	-Average total time(request-calculation-response) of each function: 3822.28 ms;
+	-Average request-response time: 893.4000000000001 ms;
+	-The total time of test: 8749 ms;
+
+Test no 1:
+	-Average calculation time of each function: 2687.88 ms;
+	-Average total time(request-calculation-response) of each function: 3516.5 ms;
+	-Average request-response time: 828.6199999999999 ms;
+	-The total time of test: 9085 ms;
+
+Test no 2:
+	-Average calculation time of each function: 2690.9 ms;
+	-Average total time(request-calculation-response) of each function: 3488.6 ms;
+	-Average request-response time: 797.6999999999998 ms;
+	-The total time of test: 8954 ms;
+
+Test no 3:
+	-Average calculation time of each function: 2850.38 ms;
+	-Average total time(request-calculation-response) of each function: 3678.66 ms;
+	-Average request-response time: 828.2799999999997 ms;
+	-The total time of test: 9205 ms;
+
+Test no 4:
+	-Average calculation time of each function: 2830.2 ms;
+	-Average total time(request-calculation-response) of each function: 3664.69 ms;
+	-Average request-response time: 834.4900000000002 ms;
+	-The total time of test: 9053 ms;
+
+Test no 5:
+	-Average calculation time of each function: 2485.32 ms;
+	-Average total time(request-calculation-response) of each function: 3351.59 ms;
+	-Average request-response time: 866.27 ms;
+	-The total time of test: 8896 ms;
+
+Test no 6:
+	-Average calculation time of each function: 2517.86 ms;
+	-Average total time(request-calculation-response) of each function: 3329.8 ms;
+	-Average request-response time: 811.94 ms;
+	-The total time of test: 9500 ms;
+
+Test no 7:
+	-Average calculation time of each function: 2523.0 ms;
+	-Average total time(request-calculation-response) of each function: 3351.21 ms;
+	-Average request-response time: 828.21 ms;
+	-The total time of test: 9055 ms;
+
+Test no 8:
+	-Average calculation time of each function: 2517.15 ms;
+	-Average total time(request-calculation-response) of each function: 3388.43 ms;
+	-Average request-response time: 871.2799999999997 ms;
+	-The total time of test: 8952 ms;
+
+Test no 9:
+	-Average calculation time of each function: 2680.53 ms;
+	-Average total time(request-calculation-response) of each function: 3553.09 ms;
+	-Average request-response time: 872.56 ms;
+	-The total time of test: 9460 ms;
+
+Test no 10:
+	-Average calculation time of each function: 2659.76 ms;
+	-Average total time(request-calculation-response) of each function: 3553.97 ms;
+	-Average request-response time: 894.2099999999996 ms;
+	-The total time of test: 8996 ms;
+
+Test no 11:
+	-Average calculation time of each function: 2784.11 ms;
+	-Average total time(request-calculation-response) of each function: 3614.5 ms;
+	-Average request-response time: 830.3899999999999 ms;
+	-The total time of test: 9423 ms;
+
+Test no 12:
+	-Average calculation time of each function: 2822.27 ms;
+	-Average total time(request-calculation-response) of each function: 3677.4 ms;
+	-Average request-response time: 855.1300000000001 ms;
+	-The total time of test: 9092 ms;
+
+Test no 13:
+	-Average calculation time of each function: 2859.02 ms;
+	-Average total time(request-calculation-response) of each function: 3687.62 ms;
+	-Average request-response time: 828.5999999999999 ms;
+	-The total time of test: 9553 ms;
+
+Test no 14:
+	-Average calculation time of each function: 2661.23 ms;
+	-Average total time(request-calculation-response) of each function: 3509.6 ms;
+	-Average request-response time: 848.3699999999999 ms;
+	-The total time of test: 8672 ms;
+
+Test no 15:
+	-Average calculation time of each function: 2667.44 ms;
+	-Average total time(request-calculation-response) of each function: 3514.42 ms;
+	-Average request-response time: 846.98 ms;
+	-The total time of test: 8952 ms;
+
+Test no 16:
+	-Average calculation time of each function: 2832.8 ms;
+	-Average total time(request-calculation-response) of each function: 3673.62 ms;
+	-Average request-response time: 840.8199999999997 ms;
+	-The total time of test: 9160 ms;
+
+Test no 17:
+	-Average calculation time of each function: 2581.51 ms;
+	-Average total time(request-calculation-response) of each function: 3424.06 ms;
+	-Average request-response time: 842.5499999999997 ms;
+	-The total time of test: 9875 ms;
+
+Test no 18:
+	-Average calculation time of each function: 2542.22 ms;
+	-Average total time(request-calculation-response) of each function: 3450.35 ms;
+	-Average request-response time: 908.1300000000001 ms;
+	-The total time of test: 9260 ms;
+
+Test no 19:
+	-Average calculation time of each function: 2618.37 ms;
+	-Average total time(request-calculation-response) of each function: 3468.56 ms;
+	-Average request-response time: 850.19 ms;
+	-The total time of test: 9116 ms;
+
+*THE AVERAGE CALCULATION TIME OF EACH FUNCTION: 2687.0415000000003 ms;
+*THE AVERAGE TOTAL TIME OF EACH FUNCTION: 3535.9474999999998 ms;
+*THE AVERAGE RESPONSE TIME OF EACH FUNCTION: 848.906 ms;
+*THE AVERAGE RESPONSE WITH OUT FIRST TEST TIME OF EACH FUNCTION: 846.5642105263157 ms;
+*THE AVERAGE TOTAL TIME OF EACH TEST: 9150.4 ms;
+
+---The data for plots---
+Average calculation times of each function per test: 
+3822.28	3516.5	3488.6	3678.66	3664.69	3351.59	3329.8	3351.21	3388.43	3553.09	3553.97	3614.5	3677.4	3687.62	3509.6	3514.42	3673.62	3424.06	3450.35	3468.56	
+Average request - response times of each function per test: 
+893.4	828.62	797.7	828.28	834.49	866.27	811.94	828.21	871.28	872.56	894.21	830.39	855.13	828.6	848.37	846.98	840.82	842.55	908.13	850.19	
+Average calc and response times of each function per test: 
+3822.28	3516.5	3488.6	3678.66	3664.69	3351.59	3329.8	3351.21	3388.43	3553.09	3553.97	3614.5	3677.4	3687.62	3509.6	3514.42	3673.62	3424.06	3450.35	3468.56	
+Total times of each test: 
+8749.0	9085.0	8954.0	9205.0	9053.0	8896.0	9500.0	9055.0	8952.0	9460.0	8996.0	9423.0	9092.0	9553.0	8672.0	8952.0	9160.0	9875.0	9260.0	9116.0	
