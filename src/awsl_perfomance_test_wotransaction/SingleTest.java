@@ -53,7 +53,7 @@ public class SingleTest {
             threadList.add(parallelInvokerThread);
             //delay put due to limits of AWS Lambda(1000 requests per second with a burst limit of 2000 rps)
             synchronized (m){
-                m.wait(50);
+                m.wait(10);
             }
         }
         Iterator<ParallelInvokerThread> threadIterator = threadList.iterator();
@@ -94,6 +94,9 @@ public class SingleTest {
             result += thread.getResponseTime();
         }
         return result/n;
+    }
+    double getAvrgResponceTime(){
+        return  getAvrgTotalTime() - getAvrgCulcTime();
     }
     void writeIntoFile(List<ParallelInvokerThread> list, String fileName){
         PrintWriter printWriter = null;
