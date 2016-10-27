@@ -25,13 +25,11 @@ class ParallelInvokerThread extends Thread{
     private static AWSCredentials credentials;
     private static AWSLambdaClient lambdaClient;
     private InputData inputData;
-    OutputData receivedData;
-    private long calcStartTime;
+    private OutputData receivedData;
     private long responseTime;
 
-    ParallelInvokerThread(InputData inputData, long calcStartTime){
+    ParallelInvokerThread(InputData inputData){
         this.inputData = inputData;
-        this.calcStartTime = calcStartTime;
     }
 
     @Override

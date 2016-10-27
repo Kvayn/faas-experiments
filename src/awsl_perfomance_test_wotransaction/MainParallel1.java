@@ -12,7 +12,7 @@ public class MainParallel1 {
 
     public static void main(String[] args) throws InterruptedException {
         int k = 1;
-        int matrixSize = 2000;
+        int matrixSize = 1000;
         double[] totalTimes = new double[k];
         double[] avgCalcTimes = new double[k];
         double[] avgTotalTimes = new double[k];

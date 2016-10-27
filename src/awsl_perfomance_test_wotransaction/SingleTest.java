@@ -48,7 +48,7 @@ public class SingleTest {
             //create input object for function
             awsl_perfomance_test_wotransaction.InputData inputData = new awsl_perfomance_test_wotransaction.InputData(size, n, i);
             //start a certain thread
-            ParallelInvokerThread parallelInvokerThread = new ParallelInvokerThread(inputData, startTime);
+            ParallelInvokerThread parallelInvokerThread = new ParallelInvokerThread(inputData);
             parallelInvokerThread.start();
             threadList.add(parallelInvokerThread);
             //delay put due to limits of AWS Lambda(1000 requests per second with a burst limit of 2000 rps)
