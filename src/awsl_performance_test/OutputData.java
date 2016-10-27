@@ -1,38 +1,40 @@
 package awsl_performance_test;
 
-import java.util.Arrays;
-
 class OutputData {
     private int[][] matrixC;
-    private String message;
+    private long calcTime;
+    private int id;
     public OutputData(){
 
     }
-    OutputData(int[][] matrixC, String message) {
+
+    public OutputData(int[][] matrixC, long calcTime, int id) {
         this.matrixC = matrixC;
-        this.message = message;
+        this.calcTime = calcTime;
+        this.id = id;
     }
 
     public int[][] getMatrixC() {
         return matrixC;
     }
 
-    public String getMessage() {
-        return message;
+    public long getCalcTime() {
+        return calcTime;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setMatrixC(int[][] matrixC) {
         this.matrixC = matrixC;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setCalcTime(long calcTime) {
+        this.calcTime = calcTime;
     }
 
-    @Override
-    public String toString() {
-        return "OutputData{" +
-                "matrixC=" + Arrays.toString(matrixC) +
-                '}';
+    public void setId(int id) {
+        this.id = id;
     }
 }

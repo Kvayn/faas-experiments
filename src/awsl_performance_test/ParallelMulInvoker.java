@@ -24,14 +24,12 @@ class ParallelMulInvoker extends Thread{
     private static AWSCredentials credentials;
     private static AWSLambdaClient lambdaClient;
     private InputData inputData;
-    private OutputData outputData;
-    private long startTime;
+    private OutputData receivedData;
+    private long responseTime;
 
 
-    ParallelMulInvoker(InputData inputData, OutputData outputData, long startTime){
+    ParallelMulInvoker(InputData inputData){
         this.inputData = inputData;
-        this.outputData = outputData;
-        this.startTime = startTime;
     }
 
     @Override
@@ -56,16 +54,12 @@ class ParallelMulInvoker extends Thread{
             invokeRequest.setFunctionName(functionName);
             invokeRequest.setPayload(json);
 
-            long startReqTime = System.currentTimeMillis();
+            long startTime = System.currentTimeMillis();
             //invoke the function
-            OutputData receivedData = objectMapper.readValue(byteBufferToString(
+            receivedData = objectMapper.readValue(byteBufferToString(
                     lambdaClient.invoke(invokeRequest).getPayload(),
                     Charset.forName("UTF-8")), OutputData.class);
-            //print the response time of function and the time was taken to calculate
-            System.out.println("The time of response is " + (System.currentTimeMillis() - startReqTime) +
-                    " | " + receivedData.getMessage() + " | The total time is " + (System.currentTimeMillis() - startReqTime));
-            //add to result matrix calculated part
-            addMatrix(receivedData.getMatrixC());
+            responseTime = System.currentTimeMillis() - startTime;
         } catch (Exception e) {
             logger.error(e.getMessage());
             System.out.println(e.getMessage());
@@ -81,21 +75,16 @@ class ParallelMulInvoker extends Thread{
         }
         return new String(bytes, charset);
     }
-    private void addMatrix(int[][] A){
-        double rowsToCount = inputData.getSize()/inputData.getN();
-        double startRow = rowsToCount*inputData.getId();
-        double endRow = startRow + rowsToCount;
-        for (int i = (int)startRow; i < (int)endRow; i++){
-            for (int j = 0; j < A.length; j++){
-                outputData.getMatrixC()[i][j] =  outputData.getMatrixC()[i][j] + A[i][j];
-            }
-        }
-    }
+
     public InputData getInputData() {
         return inputData;
     }
 
-    public OutputData getOutputData() {
-        return outputData;
+    public OutputData getReceivedData() {
+        return receivedData;
+    }
+
+    public long getResponseTime() {
+        return responseTime;
     }
 }
