@@ -1,4 +1,4 @@
-package awsl_perfomance_test_wotransaction;
+package awsl_performance_test_wotransaction;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;

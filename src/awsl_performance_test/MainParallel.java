@@ -1,5 +1,6 @@
 package awsl_performance_test;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -86,8 +87,9 @@ public class MainParallel {
     }
     static void writeIntoFile(String data, String fileName){
         PrintWriter printWriter = null;
+        createDir("results");
         try {
-            printWriter = new PrintWriter(fileName, "UTF-8");
+            printWriter = new PrintWriter("results/" + fileName, "UTF-8");
             printWriter.print(data);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -95,6 +97,14 @@ public class MainParallel {
             e.printStackTrace();
         } finally {
             printWriter.close();
+        }
+    }
+    static private void createDir(String path){
+        File dir = new File(path);
+        if (!dir.exists()){
+            dir.mkdir();
+        }else{
+            //System.err.println("Failed to create a directory");
         }
     }
     static double round(double value, int places) {

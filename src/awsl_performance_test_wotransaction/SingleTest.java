@@ -1,7 +1,5 @@
-package awsl_perfomance_test_wotransaction;
+package awsl_performance_test_wotransaction;
 
-
-import awsl_perfomance_test_wotransaction.*;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -34,7 +32,7 @@ public class SingleTest {
         return totalTime;
     }
 
-    MainParallel1 m = new MainParallel1();
+    MainParallel m = new MainParallel();
      long test() throws InterruptedException{
 
         int size = matrixSize;        //the size of matrix
@@ -46,7 +44,7 @@ public class SingleTest {
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < n; i++){
             //create input object for function
-            awsl_perfomance_test_wotransaction.InputData inputData = new awsl_perfomance_test_wotransaction.InputData(size, n, i);
+            awsl_performance_test_wotransaction.InputData inputData = new awsl_performance_test_wotransaction.InputData(size, n, i);
             //start a certain thread
             ParallelInvokerThread parallelInvokerThread = new ParallelInvokerThread(inputData);
             parallelInvokerThread.start();

@@ -1,14 +1,11 @@
-package awsl_perfomance_test_wotransaction;
+package awsl_performance_test_wotransaction;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
-public class MainParallel1 {
+public class MainParallel {
 
     public static void main(String[] args) throws InterruptedException {
         int k = 1;
@@ -38,7 +35,7 @@ public class MainParallel1 {
         resultString += "*THE AVERAGE TOTAL TIME OF EACH TEST: " + getAvarage(totalTimes) + " ms;\n";
         resultString += getDataForPlot(avgCalcTimes, avgResponseTime, avgTotalTimes, totalTimes);
         System.out.println(resultString);
-        String fileName = "" + k + " iterations test; the matrix size: " + matrixSize;
+        String fileName = "Without transaction: " + k + " iterations test; the matrix size: " + matrixSize;
         writeIntoFile(resultString, fileName);
 
 
@@ -90,8 +87,9 @@ public class MainParallel1 {
     }
     static void writeIntoFile(String data, String fileName){
         PrintWriter printWriter = null;
+        createDir("results");
         try {
-            printWriter = new PrintWriter(fileName, "UTF-8");
+            printWriter = new PrintWriter("results/" + fileName, "UTF-8");
             printWriter.print(data);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -99,6 +97,14 @@ public class MainParallel1 {
             e.printStackTrace();
         } finally {
             printWriter.close();
+        }
+    }
+    static private void createDir(String path){
+        File dir = new File(path);
+        if (!dir.exists()){
+            dir.mkdir();
+        }else{
+            //System.err.println("Failed to create a directory");
         }
     }
     static double round(double value, int places) {
