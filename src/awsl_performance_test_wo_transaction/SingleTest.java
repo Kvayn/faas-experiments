@@ -1,4 +1,4 @@
-package awsl_performance_test_wotransaction;
+package awsl_performance_test_wo_transaction;
 
 
 import java.io.FileNotFoundException;
@@ -44,7 +44,7 @@ public class SingleTest {
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < n; i++){
             //create input object for function
-            awsl_performance_test_wotransaction.InputData inputData = new awsl_performance_test_wotransaction.InputData(size, n, i);
+            awsl_performance_test_wo_transaction.InputData inputData = new awsl_performance_test_wo_transaction.InputData(size, n, i);
             //start a certain thread
             ParallelInvokerThread parallelInvokerThread = new ParallelInvokerThread(inputData);
             parallelInvokerThread.start();

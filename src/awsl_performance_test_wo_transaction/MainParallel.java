@@ -1,4 +1,4 @@
-package awsl_performance_test_wotransaction;
+package awsl_performance_test_wo_transaction;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,7 +9,7 @@ public class MainParallel {
 
     public static void main(String[] args) throws InterruptedException {
         int k = 1;
-        int matrixSize = 1000;
+        int matrixSize = 2000;
         double[] totalTimes = new double[k];
         double[] avgCalcTimes = new double[k];
         double[] avgTotalTimes = new double[k];
@@ -25,6 +25,11 @@ public class MainParallel {
             //singleTest.writeIntoFile(singleTest.getThreadList(), "testResult" + i + ".txt");
             //singleTest.writeRespTimeIntoFile(singleTest.getThreadList(), "responseTime" + i + ".txt");
             resultString += createString(singleTest);
+            System.out.println(resultString);
+//            MainParallel m = new MainParallel();
+//            synchronized (m){
+//                m.wait(900000);
+//            }
 
         }
         resultString += "*THE AVERAGE CALCULATION TIME OF EACH FUNCTION: " + getAvarage(avgCalcTimes) + " ms;\n";
@@ -35,7 +40,8 @@ public class MainParallel {
         resultString += "*THE AVERAGE TOTAL TIME OF EACH TEST: " + getAvarage(totalTimes) + " ms;\n";
         resultString += getDataForPlot(avgCalcTimes, avgResponseTime, avgTotalTimes, totalTimes);
         System.out.println(resultString);
-        String fileName = "Without transaction: " + k + " iterations test; the matrix size: " + matrixSize;
+
+        String fileName = "Without transaction(Just after creating - 1): " + k + " iterations test; the matrix size: " + matrixSize;
         writeIntoFile(resultString, fileName);
 
 

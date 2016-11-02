@@ -12,7 +12,7 @@ public class SingleTest {
     private int id;
     private int matrixSize;
     private int n = 100;            //number of concurrent functions
-    private List<ParallelMulInvoker> threadList = new ArrayList<>();
+    private List<ParallelInvokerThread> threadList = new ArrayList<>();
     private long totalTime = 0;
     private int[][] resultMatrix;
 
@@ -22,7 +22,7 @@ public class SingleTest {
         resultMatrix = new int[matrixSize][matrixSize];
     }
 
-    public List<ParallelMulInvoker> getThreadList() {
+    public List<ParallelInvokerThread> getThreadList() {
         return threadList;
     }
 
@@ -51,7 +51,7 @@ public class SingleTest {
             //create input object for function
             InputData inputData = new InputData(M1, M2, size, n, i);
             //start a certain thread
-            ParallelMulInvoker parallelInvokerThread = new ParallelMulInvoker(inputData);
+            ParallelInvokerThread parallelInvokerThread = new ParallelInvokerThread(inputData);
             parallelInvokerThread.start();
             threadList.add(parallelInvokerThread);
             //delay put due to limits of AWS Lambda(1000 requests per second with a burst limit of 2000 rps)
@@ -59,7 +59,7 @@ public class SingleTest {
                 m.wait(10);
             }
         }
-        Iterator<ParallelMulInvoker> threadIterator = threadList.iterator();
+        Iterator<ParallelInvokerThread> threadIterator = threadList.iterator();
         while (threadIterator.hasNext()){
             threadIterator.next().join();
         }
@@ -83,18 +83,18 @@ public class SingleTest {
     }
     double getAvrgCulcTime(){
         double result = 0;
-        Iterator<ParallelMulInvoker> iterator = threadList.iterator();
+        Iterator<ParallelInvokerThread> iterator = threadList.iterator();
         while (iterator.hasNext()){
-            ParallelMulInvoker thread = iterator.next();
+            ParallelInvokerThread thread = iterator.next();
             result += thread.getReceivedData().getCalcTime();
         }
         return result/n;
     }
     double getAvrgTotalTime(){
         double result = 0;
-        Iterator<ParallelMulInvoker> iterator = threadList.iterator();
+        Iterator<ParallelInvokerThread> iterator = threadList.iterator();
         while (iterator.hasNext()){
-            ParallelMulInvoker thread = iterator.next();
+            ParallelInvokerThread thread = iterator.next();
             result += thread.getResponseTime();
         }
         return result/n;
@@ -102,11 +102,11 @@ public class SingleTest {
     double getAvrgResponceTime(){
         return  getAvrgTotalTime() - getAvrgCulcTime();
     }
-    void writeIntoFile(List<ParallelMulInvoker> list, String fileName){
+    void writeIntoFile(List<ParallelInvokerThread> list, String fileName){
         PrintWriter printWriter = null;
         try {
             printWriter = new PrintWriter(fileName, "UTF-8");
-            Iterator<ParallelMulInvoker> iterator = list.iterator();
+            Iterator<ParallelInvokerThread> iterator = list.iterator();
             while (iterator.hasNext()){
                 printWriter.print(String.valueOf(iterator.next().getReceivedData().getCalcTime()) + "\t");
             }
@@ -118,13 +118,13 @@ public class SingleTest {
             printWriter.close();
         }
     }
-    void writeRespTimeIntoFile(List<ParallelMulInvoker> list, String fileName){
+    void writeRespTimeIntoFile(List<ParallelInvokerThread> list, String fileName){
         PrintWriter printWriter = null;
         try {
             printWriter = new PrintWriter(fileName, "UTF-8");
-            Iterator<ParallelMulInvoker> iterator = list.iterator();
+            Iterator<ParallelInvokerThread> iterator = list.iterator();
             while (iterator.hasNext()){
-                ParallelMulInvoker parallelInvokerThread = iterator.next();
+                ParallelInvokerThread parallelInvokerThread = iterator.next();
                 printWriter.print(String.valueOf(parallelInvokerThread.getResponseTime() -
                         parallelInvokerThread.getReceivedData().getCalcTime()) + "\t");
             }
@@ -145,10 +145,10 @@ public class SingleTest {
         }
         return result;
     }
-    private int[][]  addMatrix(List<ParallelMulInvoker> listThreads){
+    private int[][]  addMatrix(List<ParallelInvokerThread> listThreads){
         double rowsToCount = matrixSize/n;
         int[][] result = new int[matrixSize][matrixSize];
-        for (ParallelMulInvoker thread :
+        for (ParallelInvokerThread thread :
                 listThreads) {
             int[][] resultMatrix = thread.getReceivedData().getMatrixC();
             double startRow = rowsToCount * thread.getReceivedData().getId();

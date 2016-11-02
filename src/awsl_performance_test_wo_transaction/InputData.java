@@ -1,4 +1,4 @@
-package awsl_performance_test_wotransaction;
+package awsl_performance_test_wo_transaction;
 
 class InputData {
     private int size;

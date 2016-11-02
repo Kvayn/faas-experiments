@@ -14,8 +14,8 @@ import org.apache.commons.logging.LogFactory;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 
-class ParallelMulInvoker extends Thread{
-    private static final Log logger = LogFactory.getLog(ParallelMulInvoker.class);
+class ParallelInvokerThread extends Thread{
+    private static final Log logger = LogFactory.getLog(ParallelInvokerThread.class);
     private static final String awsAccessKeyId = "AKIAJLCK3VX4HPPGEJQQ";
     private static final String awsSecretAccessKey = "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";
     private static final String regionName = "us-west-2";
@@ -28,7 +28,7 @@ class ParallelMulInvoker extends Thread{
     private long responseTime;
 
 
-    ParallelMulInvoker(InputData inputData){
+    ParallelInvokerThread(InputData inputData){
         this.inputData = inputData;
     }
 
