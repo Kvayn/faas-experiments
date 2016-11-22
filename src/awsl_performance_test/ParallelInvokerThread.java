@@ -8,6 +8,7 @@ import com.amazonaws.services.lambda.AWSLambdaClient;
 import com.amazonaws.services.lambda.model.InvokeRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import configurations.ConfigReader;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -15,11 +16,11 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 
 class ParallelInvokerThread extends Thread{
-    private static final Log logger = LogFactory.getLog(ParallelInvokerThread.class);
-    private static final String awsAccessKeyId = "AKIAJLCK3VX4HPPGEJQQ";
-    private static final String awsSecretAccessKey = "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";
-    private static final String regionName = "us-west-2";
-    private static final String functionName = "ParallelCompTest";
+    private static Log logger = LogFactory.getLog(ParallelInvokerThread.class);
+    private static String awsAccessKeyId;
+    private static String awsSecretAccessKey;
+    private static String regionName;
+    private static String functionName;
     private static Region region;
     private static AWSCredentials credentials;
     private static AWSLambdaClient lambdaClient;
@@ -30,6 +31,10 @@ class ParallelInvokerThread extends Thread{
 
     ParallelInvokerThread(InputData inputData){
         this.inputData = inputData;
+        awsAccessKeyId = ConfigReader.getConfig().getAwsAccessKeyId();
+        awsSecretAccessKey = ConfigReader.getConfig().getAwsSecretAccessKey();
+        regionName = ConfigReader.getConfig().getRegion();
+        functionName = ConfigReader.getConfig().getFunctionNameWithTransaction();
     }
 
     @Override

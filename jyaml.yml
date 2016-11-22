@@ -1,0 +1,5 @@
+region:
+awsAccessKeyId:
+awsSecretAccessKey:
+functionNameWOTransaction:
+functionNameWithTransaction:
